@@ -42,7 +42,7 @@ export class AssociationsUserAdd implements OnInit{
       this.route.url.subscribe(res => {
         this.idUrl = res[1]?.path;
         if (!this.idUrl) return;
-        const associationRequest: Observable<any> = this.http.get('http://localhost:3000/associations/'+this.idUrl, { observe: 'response' });
+        const associationRequest: Observable<any> = this.http.get(environment.base_url + '/associations/' + this.idUrl, { observe: 'response' });
           lastValueFrom(associationRequest).then(response => {this.associationData = response.body; this.changeDetector.detectChanges();
           });
 

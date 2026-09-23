@@ -11,6 +11,7 @@ import { Nav } from '../nav/nav';
 import { MatTableModule } from '@angular/material/table';
 import { Minutes } from '../models/minutes.model';
 import { MatTabsModule } from '@angular/material/tabs';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-association-details',
@@ -36,10 +37,10 @@ export class AssociationDetails {
     this.route.url.subscribe(res => {
       this.idUrl = res[1]?.path;
       if (!this.idUrl) return;
-      const memberRequest: Observable<any> = this.http.get('http://localhost:3000/associations/'+this.idUrl, { observe: 'response' });
+      const memberRequest: Observable<any> = this.http.get(environment.base_url + '/associations/' + this.idUrl, { observe: 'response' });
         lastValueFrom(memberRequest).then(response => {this.dataSource = response.body; this.changeDetector.detectChanges();
       });
-      const minuteRequest: Observable<any> = this.http.get('http://localhost:3000/associations/'+this.idUrl+'/minutes', { observe: 'response' });
+      const minuteRequest: Observable<any> = this.http.get(environment.base_url + '/associations/' + this.idUrl + '/minutes', { observe: 'response' });
         lastValueFrom(minuteRequest).then(response => {this.minutes = response.body; this.changeDetector.detectChanges(); console.log(this.minutes);
         
       });

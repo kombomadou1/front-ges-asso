@@ -60,7 +60,7 @@ export class AssociationsFormUpdate {
     this.route.url.subscribe(res => {
         this.idUrl = res[2]?.path;
         if (!this.idUrl) return;
-        const memberRequest: Observable<any> = this.http.get('http://localhost:3000/associations/'+this.idUrl, { observe: 'response' });
+        const memberRequest: Observable<any> = this.http.get(environment.base_url + '/associations/' + this.idUrl, { observe: 'response' });
           lastValueFrom(memberRequest).then(response => {this.dataSource = response.body;this.associationName=this.dataSource.name; this.changeDetector.detectChanges();
         });
         

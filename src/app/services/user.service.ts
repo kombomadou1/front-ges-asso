@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class User {
-  private apiUrl = 'http://localhost:3000/users';
-  private associationUrl = 'http://localhost:3000/associations';
+  private apiUrl = `${environment.base_url}/users`;
+  private associationUrl = `${environment.base_url}/associations`;
 
   constructor(private http: HttpClient) {}
 

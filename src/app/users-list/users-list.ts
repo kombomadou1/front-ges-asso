@@ -52,7 +52,7 @@ export class UsersList implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const request: Observable<any> = this.http.get('http://localhost:3000/users', {
+    const request: Observable<any> = this.http.get(environment.base_url + '/users', {
       observe: 'response',
     });
     lastValueFrom(request).then((response) => {
